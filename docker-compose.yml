@@ -1,0 +1,16 @@
+version: '3'
+services:
+  database:
+    image: mongo:3.6
+    ports: 
+      - 27017:27017
+    
+  btc-bitcore:
+    build: .
+    image: btc-bitcore
+    links:
+      - database
+    ports:
+      - 3001:3000
+    environment:
+      - DB_HOST=database
